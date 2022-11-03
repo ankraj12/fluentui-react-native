@@ -469,6 +469,8 @@ export interface AliasColorTokens {
   neutralForeground3BrandHover: ColorValue;
   neutralForeground3BrandPressed: ColorValue;
   neutralForeground3BrandSelected: ColorValue;
+  neutralForegroundDisabled1?: ColorValue;
+  neutralForegroundOnColor?: ColorValue;
 
   neutralForeground4?: ColorValue;
   neutralForegroundDisabled?: ColorValue;
@@ -488,7 +490,6 @@ export interface AliasColorTokens {
   brandForegroundTint?: ColorValue;
   brandForegroundDisabled1?: ColorValue;
   brandForegroundDisabled2?: ColorValue;
-
   brandForeground2?: ColorValue;
 
   neutralForegroundOnBrand?: ColorValue;

@@ -69,6 +69,10 @@ export function mapPipelineToTheme(pipelineOutput: any): AliasColorTokens {
     neutralStroke2: pipelineOutput.neutralStroke2.strokeColorRest,
     neutralStrokeDisabled: pipelineOutput.neutralStrokeDisabled.strokeColorRest,
 
+    neutralForegroundDisabled: pipelineOutput.neutralForegroundDisabled1.fillColorRest,
+    neutralForegroundDisabled1: pipelineOutput.neutralForegroundDisabled2.fillColorRest, //1
+    neutralForegroundOnColor: pipelineOutput.neutralForegroundOnColor.fillColorRest, // 2
+
     //Brand tokens.
     brandBackground: pipelineOutput.brandBackground1.fillColorRest,
     brandBackgroundPressed: pipelineOutput.brandBackground1.fillColorPressed,
