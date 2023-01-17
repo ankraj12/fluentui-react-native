@@ -3,6 +3,8 @@ import { BadgeCoreProps, BadgeSlotProps } from '../';
 import { BadgeCoreTokens, BadgeConfigurableProps } from '../Badge.types';
 
 export const presenceBadgeName = 'PresenceBadge';
+// export const PresenceBadgeStatuses = ['', '', '', '', 'outOfOffice', '', '', ''] as const;
+
 export const PresenceBadgeStatuses = ['doNotDisturb', 'busy', 'unknown', 'blocked', 'outOfOffice', 'away', 'available', 'offline'] as const;
 export type PresenceBadgeStatus = typeof PresenceBadgeStatuses[number];
 

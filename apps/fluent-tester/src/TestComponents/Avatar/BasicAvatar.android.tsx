@@ -7,6 +7,99 @@ import { mobileStyles } from '../Common/styles';
 export const StandardUsage: FunctionComponent = () => {
   return (
     <View style={{ paddingBottom: 40 }}>
+
+      <View style={mobileStyles.testVariants}>
+
+        {/* // 2 rings  ( active state) variation */}
+        {/* <Avatar ringBackgroundColor={'yellow'} active="active" name="* Test Madhav *" activeAppearance="ring" size={72} /> */}
+
+        <Avatar active="active" name="* Keshav Madhav *" activeAppearance="ring" size={16} />
+        <Avatar active="active" name="* Keshav Madhav *" activeAppearance="ring" size={20} />
+        <Avatar active="active" name="* Keshav Madhav *" activeAppearance="ring" size={24} />
+        <Avatar active="active" name="* Keshav Madhav *" activeAppearance="ring" size={32} />
+
+        <Avatar active="active" name="* Keshav Madhav *" activeAppearance="ring" size={40} />
+        <Avatar active="active" name="* Keshav Madhav *" activeAppearance="ring" size={56} />
+        <Avatar active="active" name="* Keshav Madhav *" activeAppearance="ring" size={72} />
+
+      </View>
+
+
+      <View style={mobileStyles.testVariants}>
+
+
+        <Avatar activeAppearance="ring" active="active" avatarColor={'brand'} size={72} />
+
+        <Avatar
+          ringBackgroundColor={'yellow'}
+          active="active"
+          name="* Keshav Madhav *" activeAppearance="ring" size={72} />
+
+        <Avatar active="active" activeAppearance="ring" size={72} name="* Richard Faynman *" imageUrl={steveBallmerPhotoUrl} />
+
+
+        {/* // rest of sizes below wiht presence active */}
+      </View>
+      <View style={mobileStyles.testVariants}>
+
+        {/* Variation - Standard */}
+
+        {/* // ankraj - style each of these and Out of office variants of this. Mix this with size ramp. */}
+        {/* none available presence */}
+        <Avatar badge={{ status: 'available' }} avatarColor={'brand'} size={16} />
+
+        {/* small available presence */}
+        <Avatar badge={{ status: 'available' }} avatarColor={'brand'} size={20} />
+
+        {/* small available presence */}
+        <Avatar badge={{ status: 'available' }} avatarColor={'brand'} size={24} />
+
+        {/* small available presence */}
+        <Avatar badge={{ status: 'available' }} avatarColor={'brand'} size={32} />
+
+        {/* Medium available presence */}
+        <Avatar badge={{ status: 'available' }} avatarColor={'brand'} size={40} />
+
+        {/* medium available presence */}
+        <Avatar badge={{ status: 'available' }} avatarColor={'brand'} size={56} />
+
+        <Avatar badge={{ status: 'available' }} avatarColor={'brand'} size={72} />
+
+        {/* large available presence - out of office */}
+        <Avatar badge={{ status: 'available', outOfOffice: true }} avatarColor={'brand'} size={72} />
+      </View>
+
+      <View style={mobileStyles.testVariants}>
+        {/* With badge. */}
+        <Avatar badge={{ status: 'doNotDisturb' }} avatarColor={'brand'} size={40} />
+
+        <Avatar badge={{ status: 'doNotDisturb' }} avatarColor={'brand'} size={40} />
+
+        {/* With badge. */}
+        <Avatar badge={{ status: 'busy' }} avatarColor={'brand'} size={40} />
+        {/* With badge. */}
+        <Avatar badge={{ status: 'unknown' }} avatarColor={'brand'} size={40} />
+
+
+      </View>
+
+      <View style={mobileStyles.testVariants}>
+
+        {/* With badge. */}
+        <Avatar badge={{ status: 'blocked' }} avatarColor={'brand'} size={40} />
+        {/* With badge. */}
+        <Avatar badge={{ status: 'away' }} avatarColor={'brand'} size={40} />
+        {/* With badge. */}
+        <Avatar badge={{ status: 'offline' }} avatarColor={'brand'} size={40} />
+
+        <Avatar badge={{ status: 'outOfOffice' }} avatarColor={'brand'} size={40} />
+
+
+
+
+      </View>
+
+
       <View style={mobileStyles.testVariants}>
         {/* Variation - Standard */}
 
@@ -17,7 +110,8 @@ export const StandardUsage: FunctionComponent = () => {
         <Avatar size={56} avatarColor={'brand'} />
 
         {/* Variation - With Ring.*/}
-        <Avatar active="active" activeAppearance="ring" size={56} avatarColor={'brand'} />
+        {/* Variation - With Ring as well as badge?.*/}
+        <Avatar active="active" badge={{ status: 'available' }} activeAppearance="ring" size={56} avatarColor={'brand'} />
       </View>
 
       <View style={mobileStyles.testVariants}>
@@ -37,7 +131,9 @@ export const StandardUsage: FunctionComponent = () => {
         {/*Variation - Anonymous*/}
 
         {/* With Badge.*/}
-        <Avatar size={56} badge={{ status: 'available' }} />
+        <Avatar size={56}
+          badge={{ status: 'away', outOfOffice: true }}
+        />
 
         {/* No ring and badge.*/}
         <Avatar accessibilityLabel="Fall-back Icon" accessibilityHint="A picture representing a user" size={56} />
@@ -56,7 +152,7 @@ export const StandardUsage: FunctionComponent = () => {
         {/* Variation - Anonymous accent.*/}
 
         {/* With badge.*/}
-        <Avatar size={56} badge={{ status: 'available' }} avatarColor={'accent'} />
+        <Avatar size={56} badge={{ status: 'available', outOfOffice: true }} avatarColor={'accent'} />
 
         {/* No ring and badge.*/}
         <Avatar accessibilityLabel="Fall-back Icon" accessibilityHint="A picture representing a user" size={56} avatarColor={'accent'} />

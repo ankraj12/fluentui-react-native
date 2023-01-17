@@ -13,7 +13,10 @@ const avatarSections: TestSection[] = [
     component: StandardUsage,
   },
   ...Platform.select({
-    android: [null],
+    android: [{
+      name: 'Customize Usage',
+      component: CustomizeUsage,
+  }],
     default: [
       {
         name: 'Customize Usage',

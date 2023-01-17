@@ -32,8 +32,12 @@ export const useAvatar = (props: AvatarProps): AvatarInfo => {
     ...rest
   } = props;
 
+  // This needs a update.
   const showRing = active === 'active' && activeAppearance === 'ring';
-  const showBadge = (!active || active === 'unset') && !!badge && !!badge.status;
+
+  // const showRing = activeAppearance === 'ring';
+
+  const showBadge = (size != 16) && (!active || active === 'unset') && !!badge && !!badge.status;
   const accessibilityText = `${name || ''}${showBadge ? `, ${badge.status}` : ''}`;
 
   const badgeProps: PresenceBadgeProps = {

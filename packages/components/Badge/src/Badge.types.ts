@@ -7,7 +7,7 @@ import { ShadowProps } from '@fluentui-react-native/experimental-shadow';
 import { ShadowToken } from '@fluentui-react-native/theme-types';
 
 export const badgeName = 'Badge';
-export const BadgeSizes = ['tiny', 'extraSmall', 'small', 'medium', 'large', 'extraLarge'] as const;
+export const BadgeSizes = ['none','tiny', 'extraSmall', 'small', 'medium', 'large', 'extraLarge'] as const;
 export const BadgeAppearances = ['filled', 'outline', 'tint', 'ghost'] as const;
 export const BadgeShapes = ['rounded', 'circular', 'square'] as const;
 export const BadgeColors = ['brand', 'danger', 'important', 'informative', 'severe', 'subtle', 'success', 'warning'] as const;
@@ -125,6 +125,7 @@ export interface BadgeCoreTokens extends LayoutTokens, FontTokens, IBorderTokens
   /**
    * Sizes of the Badge
    */
+  none?: BadgeTokens;
   tiny?: BadgeTokens;
   extraSmall?: BadgeTokens;
   small?: BadgeTokens;

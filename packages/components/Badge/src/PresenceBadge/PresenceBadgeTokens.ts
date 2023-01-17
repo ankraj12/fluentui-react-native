@@ -12,7 +12,7 @@ export const defaultPresenceBadgeTokens: TokenSettings<PresenceBadgeTokens> = (t
     backgroundColor: t.colors.neutralBackground1,
     ...getBadgeColor('lightGreen', t),
     position: 'relative',
-    tiny: {
+    small: {
       width: 6,
       height: 6,
     },

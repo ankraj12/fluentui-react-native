@@ -9,6 +9,7 @@ import {
   AvatarNamedColor,
   ColorSchemes,
   AvatarColorSchemes,
+  RingConfig
 } from './Avatar.types';
 import { Theme, UseStylingOptions, buildProps } from '@fluentui-react-native/framework';
 import { defaultAvatarTokens } from './AvatarTokens';
@@ -81,6 +82,7 @@ export const stylingSettings: UseStylingOptions<AvatarProps, AvatarSlotProps, Av
       ['color', 'initialsColor', ...fontStyles.keys],
     ),
     initialsBackground: buildProps(
+      // Inner most box styling comes from size here.
       (tokens: AvatarTokens, theme: Theme) => {
         const { backgroundColor, size, avatarColor } = tokens;
         const _avatarColor =
@@ -140,7 +142,15 @@ export const stylingSettings: UseStylingOptions<AvatarProps, AvatarSlotProps, Av
       },
       ['iconSize', 'iconColor'],
     ),
+
+    // ankraj - can we create a 3 layer effect using this.
+    // see how is the inner and outer pasrts coming.
+    // question comes down to how can we create 3 circles from RCTVIEw.
+    // Current implementation create the 2 rings from this RCTVIEW - using a border effect for outer ring.
+    // The inner colored circle comes via margin - have another view outside it, that styles as per background of inner view.
     ring: buildProps(
+
+
       (tokens: AvatarTokens, theme: Theme) => {
         const { ringColor, ringBackgroundColor } = tokens;
         const ringConfig = getRingConfig(tokens);
@@ -150,15 +160,51 @@ export const stylingSettings: UseStylingOptions<AvatarProps, AvatarSlotProps, Av
             minWidth: ringConfig.size,
             minHeight: ringConfig.size,
             ...borderStyles.from(tokens, theme),
+            // borderWidth: ringConfig.ringThickness,
+            // glow ring for android.
             borderWidth: ringConfig.ringThickness,
-            backgroundColor: ringBackgroundColor || 'transparent',
-            borderColor: ringColor,
+
+            // borderColor: ringColor,
+            borderColor: 'green',
+
+
+            // Inner most ring for android
+            // backgroundColor: ringBackgroundColor || 'transparent',
+            backgroundColor: 'red',
+
+            // Outermost - 3rd ring of android. Deefine one common
+            // token that defines the size of this as well as 1st ting.
+            // margin: ringConfig.ringThickness,
+            ...getRingSpacing(tokens),
+
+            // margin: 4,
             aspectRatio: 1,
           },
         };
       },
       ['size', 'ringColor', 'ringBackgroundColor', 'ringThickness', ...borderStyles.keys],
     ),
+    outerRing: buildProps(
+
+      // This expnads outside ferom inner mosr toot.
+      (tokens: AvatarTokens, theme: Theme) => {
+        const { ringColor, ringBackgroundColor } = tokens;
+        const ringConfig = getRingConfig(tokens);
+        return {
+          style: {
+            borderStyle: 'solid',
+            minWidth: ringConfig.size,
+            minHeight: ringConfig.size,
+            ...borderStyles.from(tokens, theme),
+
+            // backgroundColor: ringBackgroundColor || 'transparent',
+            backgroundColor: 'red',
+          },
+        };
+      },
+      ['size', 'ringColor', 'ringBackgroundColor', 'ringThickness', ...borderStyles.keys],
+    ),
+
     badge: buildProps(
       (tokens: AvatarTokens) => {
         return {
@@ -173,15 +219,21 @@ export const stylingSettings: UseStylingOptions<AvatarProps, AvatarSlotProps, Av
   },
 };
 
-function getRingConfig(tokens: AvatarTokens): any {
+
+
+
+function getRingConfig(tokens: AvatarTokens): RingConfig {
   const { size, ringThickness } = tokens;
-  const SMALL_SIZE = 48;
-  const MEDIUM_SIZE = 71;
+  // const SMALL_SIZE = 48;
+  const MEDIUM_SIZE = 56;
+
+  // Inner gap is the inner most ring for avatar.
   const innerGap = tokens.ringInnerGap || ringThickness;
+  // const innerGap = 5;
 
   const strokeSize = {
-    small: globalTokens.stroke.width20,
-    medium: globalTokens.stroke.width30,
+    small: globalTokens.stroke.width15,
+    medium: globalTokens.stroke.width20,
     large: globalTokens.stroke.width40,
   };
   if (ringThickness) {
@@ -191,11 +243,18 @@ function getRingConfig(tokens: AvatarTokens): any {
       innerGap,
     };
   } else {
-    if (size <= SMALL_SIZE) {
+    if (size == 16) {
       return {
         size: size + strokeSize.small * 4,
         ringThickness: strokeSize.small,
         innerGap: strokeSize.small,
+      };
+    }
+    if (size == 20) {
+      return {
+        size: size + strokeSize.small * 4,
+        ringThickness: strokeSize.small,
+        innerGap: strokeSize.medium,
       };
     }
     if (size <= MEDIUM_SIZE) {
@@ -225,8 +284,14 @@ function getRingSpacing(tokens: AvatarTokens) {
   const ringConfig = getRingConfig(tokens);
   return tokens.active === 'active'
     ? {
-        marginTop: ringConfig.innerGap,
-        marginLeft: ringConfig.innerGap,
-      }
+      // marginTop: ringConfig.innerGap,
+      // marginLeft: ringConfig.innerGap,
+      // the innermost - 1st ring ring comes from here.
+      // marginTop: 4,
+      // marginLeft: 4,
+      margin: ringConfig.innerGap
+
+
+    }
     : {};
 }
